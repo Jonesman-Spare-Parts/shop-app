@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <tr th:each="product : ${products}">
-                <td  class="is-uppercase" th:text="${product.id }"> </td>
+                <td  class="is-uppercase" th:text="${product.productCode }"> </td>
                 <td class="is-capitalized" th:text="${product.productName }"> </td>
                 <td th:text="${product.productPrice }"> </td>
                 <td th:text="${product.productUnit }"> </td>
