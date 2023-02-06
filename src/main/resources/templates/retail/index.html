@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<span th:replace="~{fragments/head :: head}"></span>
+
+
+<body class="container is-fluid">
+<div class="container is-desktop mt-6">
+
+    <div class="is-flex is-justify-content-space-between	 ">
+            <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
+    <a class="button is-primary" th:href="@{/retail/form}">Add Product</a>
+    </div>
+    <div class="table-container">
+        <table class="table is-fullwidth is-striped">
+            <thead>
+            <tr> <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Product Price (<span>&#8373;</span>)</th>
+                <th>Product Unit</th>
+                <th class="has-text-centered">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td  class="is-uppercase" th:text="${product.id }"> </td>
+                <td class="is-capitalized" th:text="${product.productName }"> </td>
+                <td th:text="${product.productPrice }"> </td>
+                <td th:text="${product.productUnit }"> </td>
+                <th class="has-text-centered">
+                    <a class="button is-info is-light" th:href="@{/retail}">Edit</a>
+                    <a class="button is-danger is-light" th:href="@{/retail/{id}(id=${product.id})}">Delete</a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
