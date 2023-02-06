@@ -21,15 +21,15 @@
         <label for="productCode" class="has-text-weight-bold my-4">Product Code</label>
     <input type="text" id="productCode" th:field="*{productCode}" placeholder="Product Code" class="input  ">
   </div>
-     <div class="column is-half">
+    <div class="column is-half">
+        <label for="productUnit" class="has-text-weight-bold my-4">Product Unit</label>
+
+        <input type="number" id="productUnit" th:field="*{productUnit}" placeholder="Product Unit" class="input  ">
+    </div>
+    <div class="column is-half">
             <label for="productPrice" class="has-text-weight-bold my-4">Product Price ( <span>&#8373;</span>)</label>
     <input type="number" id="productPrice" th:field="*{productPrice}" placeholder="Product Price" class="input  ">
         </div>
-   <div class="column is-half">
-            <label for="productUnit" class="has-text-weight-bold my-4">Product Unit</label>
-
-    <input type="number" id="productUnit" th:field="*{productUnit}" placeholder="Product Unit" class="input  ">
-   </div>
 
     <div class="column">
             <input type="submit" value="Add product" class="button is-primary py-2">
