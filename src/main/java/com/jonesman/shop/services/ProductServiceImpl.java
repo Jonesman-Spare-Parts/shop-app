@@ -18,19 +18,34 @@ public class ProductServiceImpl implements ProductService{
         this.productRepository = productRepository;
     }
 
-    @Override
-    public Product createProduct(Product product) {
-        ProductEntity   productEntity = new ProductEntity();
 
-        BeanUtils.copyProperties(product, productEntity);
-        productRepository.save(productEntity);
-         return product;
-    }
 
     @Override
     public List<ProductEntity> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public ProductEntity getProductById(long id) {
+        Optional<ProductEntity> optional = productRepository.findById(id);
+
+        ProductEntity productEntity = null;
+
+        if (optional.isPresent()){
+            productEntity = optional.get();
+        }else {
+            throw new RuntimeException("Product not found with id :: " + id);
+        }
+        return productEntity;
+    }
+
+
+    @Override
+    public void saveProduct(ProductEntity productEntity) {
+
+        this.productRepository.save(productEntity);
+    }
+
 
     @Override
     public void deleteProductById(long id) {

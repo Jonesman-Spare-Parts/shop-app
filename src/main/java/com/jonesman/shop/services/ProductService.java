@@ -7,11 +7,16 @@ import java.util.List;
 
 
 public interface ProductService {
-    Product createProduct(Product product);
 
 
     List<ProductEntity> getAllProducts();
 
+   ProductEntity getProductById(long id);
+
+    void saveProduct(ProductEntity productEntity);
+
     void deleteProductById(long id);
+
+
 
 }

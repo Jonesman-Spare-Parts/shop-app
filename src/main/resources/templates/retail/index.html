@@ -28,7 +28,7 @@
                 <td th:text="${product.productPrice }"> </td>
                 <td th:text="${product.productUnit }"> </td>
                 <th class="has-text-centered">
-                    <a class="button is-info is-light" th:href="@{/retail}">Edit</a>
+                    <a class="button is-info is-light" th:href="@{/retail/edit/{id}(id=${product.id})}">Edit</a>
                     <a class="button is-danger is-light" th:href="@{/retail/{id}(id=${product.id})}">Delete</a>
                 </th>
             </tr>

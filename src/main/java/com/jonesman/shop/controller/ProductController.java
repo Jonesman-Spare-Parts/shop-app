@@ -1,6 +1,8 @@
 package com.jonesman.shop.controller;
 
+import com.jonesman.shop.entity.ProductEntity;
 import com.jonesman.shop.model.Product;
+import com.jonesman.shop.repository.ProductRepository;
 import com.jonesman.shop.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,12 @@ import java.util.Map;
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService,
+                             ProductRepository productRepository) {
         this.productService = productService;
+        this.productRepository = productRepository;
     }
 
 
@@ -31,17 +36,40 @@ public class ProductController {
             return "retail/index";
         }
 
+
+
         @GetMapping("/retail/form")
         public String showNewProductFormPage(Model model){
          model.addAttribute("product", new Product());
          return "retail/form";
         }
-         @PostMapping("/retail/form")
-        public String productSubmit(@ModelAttribute Product product , Model model) {
-            model.addAttribute("product", product);
-            productService.createProduct(product);
-            return "redirect:/retail";
-          }
+
+        @PostMapping("/retail/form")
+        public String saveProduct(@ModelAttribute("product") ProductEntity productEntity){
+        //save product to database
+        productService.saveProduct(productEntity);
+        return "redirect:/retail";
+        }
+
+        @GetMapping("/retail/edit/{id}")
+        public String showEditProductFormPage(@PathVariable(value = "id") long id, Model model){
+
+        //get product from service
+         ProductEntity productEntity = productService.getProductById(id);
+
+         //set product as a model attribute to pre-populate the form
+         model.addAttribute("product", productEntity);
+            return  "retail/form";
+        }
+
+//         @PostMapping("/retail/form")
+//        public String productSubmit(@ModelAttribute Product product , Model model) {
+//            model.addAttribute("product", product);
+//            productService.createProduct(product);
+//            return "redirect:/retail";
+//          }
+//
+
 
 
        @GetMapping("/retail/{id}")
