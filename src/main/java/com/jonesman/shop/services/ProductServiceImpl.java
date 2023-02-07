@@ -4,6 +4,9 @@ import com.jonesman.shop.entity.ProductEntity;
 import com.jonesman.shop.model.Product;
 import com.jonesman.shop.repository.ProductRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,6 +53,12 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProductById(long id) {
         this.productRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<ProductEntity> findPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+        return  this.productRepository.findAll(pageable);
     }
 
 
