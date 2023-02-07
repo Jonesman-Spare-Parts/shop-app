@@ -3,13 +3,47 @@
 <span th:replace="~{fragments/head :: head}"></span>
 
 <head>
+    <link th:href="@{/style.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div class="is-flex is-justify-content-space-between	 ">
-    <h1 class="title  has-text-weight-bold">Signup page</h1>
-    <a class="button is-ghost" th:href="@{/auth/login}">login into your account</a>
+<div align="center">
+    <h1 class="container">Sign Up Form</h1>
+    <br>
+    <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
+
+        <p>Complete the form below to Signup for our membership service</p>
+        <br>
+
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input name="firstName" type="text" placeholder="enter firstname"/></td>
+            </tr>
+            <tr>
+                <td>last Name</td>
+                <td><input name="lastName" type="lastName" placeholder="enter lastname"/></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input name="email" type="text" placeholder="enter email"/></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input name="password" type="password" placeholder="enter password"/></td>
+            </tr>
+            <tr>
+                <td>Comfirm password</td>
+                <td><input name="password" type="password" placeholder="enter password"/></td>
+
+            </tr>
+        </table>
+        <br>
+        <a class="button is-ghost" th:href="@{/auth/login}">Create account</a>
+
+    </form>
+
 </div>
 </body>
 </html>

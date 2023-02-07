@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<span th:replace="~{fragments/head :: head}"></span>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Retail Products</title>
+</head>
     <title>Retail Product Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body class="container is-fluid">
 <div class="container is-desktop mt-6">
      <div class="is-flex is-justify-content-space-between	 ">
-            <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
+            <h1 class="title  has-text-weight-bold">Jonesman Product Form</h1>
     <a class="button is-ghost" th:href="@{/retail}">Products List</a>
     </div>
 <form   class="columns is-variable is-multiline is-1-mobile is-0-tablet is-2-desktop " action="#" th:action="@{/retail/form}" th:object="${product}" method="post">
