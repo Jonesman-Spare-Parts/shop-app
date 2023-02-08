@@ -4,12 +4,14 @@ import com.jonesman.shop.entity.ProductEntity;
 import com.jonesman.shop.model.Product;
 import com.jonesman.shop.repository.ProductRepository;
 import com.jonesman.shop.services.ProductService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,9 +33,9 @@ public class ProductController {
         }
        @GetMapping("/retail")
         public String showRetailPage(Model model){
-             model.addAttribute("products",productService.getAllProducts());
-
-            return "retail/index";
+            // model.addAttribute("products",productService.getAllProducts());
+             return findPaginated(1, model);
+           // return "retail/index";
         }
 
 
@@ -60,6 +62,20 @@ public class ProductController {
          //set product as a model attribute to pre-populate the form
          model.addAttribute("product", productEntity);
             return  "retail/form";
+        }
+
+        @GetMapping("/retail/page/{pageNo}")
+        public String findPaginated(@PathVariable(value = "pageNo") int pageNo , Model model){
+            int pageSize = 10;
+
+            Page<ProductEntity> page = productService.findPagination(pageNo, pageSize);
+            List<ProductEntity> productEntityList = page.getContent();
+
+            model.addAttribute("currentPage", pageNo);
+            model.addAttribute("totalPages", page.getTotalPages());
+            model.addAttribute("totalItems", page.getTotalElements());
+            model.addAttribute("productEntityList", productEntityList);
+            return "retail/index";
         }
 
 //         @PostMapping("/retail/form")
