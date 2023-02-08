@@ -3,19 +3,18 @@
 <span th:replace="~{fragments/head :: head}"></span>
 
 <head>
-    <link th:href="@{/style.css}" rel="stylesheet" />
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div align="center">
-    <h1 class="container">Sign Up Form</h1>
+    <h1 >Sign Up Form</h1>
     <br>
-    <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
+    <form class="container" th:action="@{/signup}" th:object="${signUpForm}" method="POST">
 
-        <p>Complete the form below to Signup for our membership service</p>
+        <h5 id="header">Complete the form below to Signup for our membership service</h5>
         <br>
-
         <table>
             <tr>
                 <td>First Name</td>
@@ -36,14 +35,12 @@
             <tr>
                 <td>Comfirm password</td>
                 <td><input name="password" type="password" placeholder="enter password"/></td>
-
             </tr>
         </table>
         <br>
         <a class="button is-ghost" th:href="@{/auth/login}">Create account</a>
-
     </form>
-
 </div>
+<link defer th:href="@{/css/style.css}" rel="stylesheet" />
 </body>
 </html>

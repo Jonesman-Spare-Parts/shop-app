@@ -1,0 +1,36 @@
+.container {
+    font-family: Garamond;
+    /*text-align: center;*/
+    padding: 2rem;
+    /*background: url("https://content.codecademy.com/courses/freelance-1/unit-2/soccer.jpeg") no-repeat center;*/
+    background-size: contain;
+    color: black;
+    border-radius: 5px;
+    border: solid white 3px;
+    background-color: #f8f84e;
+    height: 500px;
+    width: 500px;
+    padding: 20px 30px;
+    width: 400px;
+    margin: 0 auto;
+
+}
+
+
+#header{
+    font-weight: bold;
+    font-size: 18px;
+
+}
+a[href]{
+    color: lightpink;
+    background-color: mediumblue;
+    color: white;
+    opacity: 0.75;
+    margin: 20px;
+
+}
+.button is-ghost{
+    background-color: black;
+}
+
