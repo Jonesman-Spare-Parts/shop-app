@@ -34,13 +34,14 @@ public class ProductController {
        @GetMapping("/retail")
         public String showRetailPage(Model model){
             // model.addAttribute("products",productService.getAllProducts());
-             return findPaginated(1, model);
+             return findPaginated(1,"productCode", "asc", model);
            // return "retail/index";
         }
 
 
 
-        @GetMapping("/retail/form")
+
+    @GetMapping("/retail/form")
         public String showNewProductFormPage(Model model){
          model.addAttribute("product", new Product());
          return "retail/form";
@@ -64,16 +65,24 @@ public class ProductController {
             return  "retail/form";
         }
 
-        @GetMapping("/retail/page/{pageNo}")
-        public String findPaginated(@PathVariable(value = "pageNo") int pageNo , Model model){
+         @GetMapping("/retail/page/{pageNo}")
+        public String findPaginated(@PathVariable(value = "pageNo") int pageNo ,
+                                    @RequestParam("sortField") String sortField,
+                                    @RequestParam("sortDir") String sortDir,
+                                    Model model){
             int pageSize = 10;
 
-            Page<ProductEntity> page = productService.findPagination(pageNo, pageSize);
+            Page<ProductEntity> page = productService.findPagination(pageNo, pageSize, sortField, sortDir);
             List<ProductEntity> productEntityList = page.getContent();
 
             model.addAttribute("currentPage", pageNo);
             model.addAttribute("totalPages", page.getTotalPages());
             model.addAttribute("totalItems", page.getTotalElements());
+
+            model.addAttribute("sortField", sortField);
+            model.addAttribute("sortDir", sortDir);
+            model.addAttribute("reverseSortDir", sortDir.equals("asc")?  "desc" : "asc");
+
             model.addAttribute("productEntityList", productEntityList);
             return "retail/index";
         }

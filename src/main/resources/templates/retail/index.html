@@ -14,10 +14,51 @@
     <div class="table-container">
         <table class="table is-fullwidth is-striped">
             <thead>
-            <tr> <th>Product Code</th>
-                <th>Product Name</th>
-                <th>Product Unit</th>
-                <th>Product Price (<span>&#8373;</span>)</th>
+            <tr >
+                <th >
+
+
+                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productCode&sortDir='+${reverseSortDir}}">
+
+                Product Code
+                        <span class="">
+                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
+                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                        </span>
+
+                    </a>
+               </th>
+                <th>
+                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productName&sortDir='+${reverseSortDir}}">
+                         Product Name
+                         <span class="">
+                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
+                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                        </span>
+                    </a>
+
+               </th>
+               <th>
+                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productUnit&sortDir='+${reverseSortDir}}">
+                         Product Unit
+                          <span class="">
+                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
+                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                        </span>
+                    </a>
+
+               </th>
+                <th>
+                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productPrice&sortDir='+${reverseSortDir}}">
+                        Product Price (<span>&#8373;</span>)
+                          <span class="">
+                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
+                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                        </span>
+                    </a>
+
+               </th>
+
                 <th class="has-text-centered">Actions</th>
             </tr>
             </thead>
@@ -44,16 +85,16 @@
     <nav  class="pagination" role="navigation" aria-label="pagination">
 
         <br>
-        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${currentPage + 1}}" class="pagination-previous">Next page</a>
+        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${currentPage + 1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" class="pagination-previous">Next page</a>
         <span th:unless="${currentPage <totalPages}" class=" pagination-next is-disabled">Next Page</span>
-        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${totalPages}}" class="pagination-next">Last page</a>
+        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" class="pagination-next">Last page</a>
         <span th:unless="${currentPage <totalPages}" class="pagination-next is-disabled">Last page</span>
 
   <ul class="pagination-list">
 
       <span th:each="i: ${#numbers.sequence(1, totalPages)}">
              <li>
-          <a th:if="${currentPage != i}" th:href="@{'/retail/page/'+${i}}" th:classappend="${currentPage }? '' : 'is-current' " class="pagination-link"  aria-label="Goto page 1">[[${i}]]</a>
+          <a th:if="${currentPage != i}" th:href="@{'/retail/page/'+${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:classappend="${currentPage }? '' : 'is-current' " class="pagination-link"  aria-label="Goto page 1">[[${i}]]</a>
                          <span th:unless="${currentPage != i}" class=" pagination-link is-disabled">[[${i}]]</span>
 
       </li>
