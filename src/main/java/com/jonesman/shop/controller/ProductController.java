@@ -106,7 +106,9 @@ public class ProductController {
         @GetMapping("/wholesale")
         public String showWholeSalePage(){
             return "wholesale/index";
-        } @GetMapping("/auth/login")
+        }
+
+        @GetMapping("/auth/login")
         public String showLoginPage(){
             return "auth/login";
         }
