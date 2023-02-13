@@ -9,18 +9,20 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "products")
-public class ProductEntity {
+@Table(name = "user")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String productCode;
-    private String productName;
+    private String firstName;
+    private String lastName;
 
-    private float productPrice;
+    private String email;
 
-    private int productUnit;
+    private String userName;
+
+    private String password;
 
     @CreatedDate
     private Date createdAdded;
