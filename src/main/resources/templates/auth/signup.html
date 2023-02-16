@@ -1,21 +1,78 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <span th:replace="~{fragments/head :: head}"></span>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
 <body>
-<h1>Signup pages</h1>
-<form class="has">
-    <div>
-        <label for=""></label>
-        <input type="text">
+<div th:if="${param.success}" class="notification has-text-centered	 is-primary is-light">
+ <button class="delete"></button>
+    You've succesfully submited your signup form . The <strong>Adminstrator </strong> will review your
+    information and admit you into Jonesuman system
+</div>
+    <div class="hero is-fullheight">
+      <div class="hero-body is-justify-content-center is-align-items-center">
+          <form id="form" action="#" th:action="@{/auth/signup}" method="post" th:object="${users}">
+              <div class="columns is-flex is-flex-direction-column box">
+          <div class="column">
+            <label for="firstName"  >First Name</label>
+            <input th:field="*{firstName}" value required autofocus="autofocus"  th:onkeyup="updateUsernameInput()" id="firstName" class="input " type="text" placeholder="Enter First Name">
+          </div>
+            <div class="column">
+            <label for="lastName">Last Name</label>
+            <input th:field="*{lastName}" value="aaaa" required autofocus="autofocus" id="lastName" class="input " type="text" placeholder="Enter Last Name">
+          </div>
+                  <div class="column">
+            <label  for="userName" >Username (<em>Auto Generated</em>)</label>
+            <input  value=""  disabled id="userName" class="input " type="text" placeholder="Auto Generated Username">
+          </div>
+          <div class="column">
+            <label for="email">Telephone</label>
+            <input th:field="*{telephone}"  autofocus="autofocus" id="telephone" class="input " type="tel" placeholder="Email address">
+          </div>
+                  <div class="column">
+                      <label for="email">Email (<em>Optional</em>)</label>
+            <input th:field="*{email}"  autofocus="autofocus" id="email" class="input " type="text" placeholder="Email address">
+          </div>
+          <div class="column">
+            <label for="password">Password</label>
+            <input th:field="*{password}" required autofocus="autofocus" id="password" class="input " type="password" placeholder="Password">
+            <input type="checkbox" autofocus="autofocus" required>
+              I agree to the <a href="#" class="has-text-info pt-2">terms and conditions</a>
+            </label>
+          </div>
+          <div class="column">
+            <input th:onclick="updateUsernameInput()" class="button is-primary is-fullwidth" value="Create an account" type="submit"/>
+          </div>
+          <div class="has-text-centered">
+            <p> Already have an account?  <a href="#" th:href="@{/auth/login}" class="has-text-info">Login</a>
+            </p>
+          </div>
+        </div>
+          </form>
+      </div>
     </div>
-    <div class="control">
-        <button class="button is-primary">Submit</button>
-    </div>
-</form>
-</body>
+
+<script th:inline="javascript">
+    
+    var formEl = document.forms.form;
+    var formData = new FormData(formEl);
+    
+    let userName = document.getElementById("userName");
+    let firstName = document.getElementById("firstName")
+    
+    function updateUsernameInput(){
+        console.log("keyup", formData.get("userName"))
+        userName.value=firstName.value
+}
+    
+    document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    const $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+</script>
+  </body>
 </html>

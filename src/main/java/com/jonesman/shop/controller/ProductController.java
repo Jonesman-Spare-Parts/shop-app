@@ -5,14 +5,11 @@ import com.jonesman.shop.model.Product;
 import com.jonesman.shop.repository.ProductRepository;
 import com.jonesman.shop.services.ProductService;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ProductController {
@@ -113,10 +110,10 @@ public class ProductController {
             return "auth/login";
         }
 
-        @GetMapping("/auth/signup")
-        public String showSignUpPage(){
-            return "auth/signup";
-        }
+//        @GetMapping("/auth/signup")
+//        public String showSignUpPage(){
+//            return "auth/signup";
+//        }
  
 
 

@@ -1,7 +1,6 @@
 package com.jonesman.shop.services;
 
 import com.jonesman.shop.entity.ProductEntity;
-import com.jonesman.shop.model.Product;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
