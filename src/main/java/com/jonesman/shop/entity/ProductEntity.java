@@ -29,5 +29,4 @@ public class ProductEntity {
     private Date updatedAt;
 
 
-
 }

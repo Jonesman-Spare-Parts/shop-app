@@ -11,12 +11,12 @@ public interface ProductService {
 
     List<ProductEntity> getAllProducts();
 
-   ProductEntity getProductById(long id);
+    ProductEntity getProductById(long id);
 
     void saveProduct(ProductEntity productEntity);
 
     void deleteProductById(long id);
 
-    Page<ProductEntity> findPagination(int pageNo , int pageSize, String sortField , String sortDirection);
+    Page<ProductEntity> findPagination(int pageNo, int pageSize, String sortField, String sortDirection);
 
 }

@@ -6,104 +6,122 @@
 
 <body class="container is-fluid">
 <div class="container is-desktop mt-6">
-
+    
     <div class="is-flex is-justify-content-space-between	 ">
-            <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
-    <a class="button is-primary" th:href="@{/retail/form}">Add Product</a>
+        <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
+        <a class="button is-primary" th:href="@{/retail/form}">Add Product</a>
     </div>
     <div class="table-container">
         <table class="table is-fullwidth is-striped">
             <thead>
-            <tr >
-                <th >
-
-
-                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productCode&sortDir='+${reverseSortDir}}">
-
-                Product Code
+            <tr>
+                <th>
+                    
+                    
+                    <a class="has-text-info"
+                       th:href="@{'/retail/page/'+${currentPage} + '?sortField=productCode&sortDir='+${reverseSortDir}}">
+                        
+                        Product Code
                         <span class="">
-                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
-                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                            <ion-icon class=" icon is-small" name="caret-down-outline"
+                                      th:if="${sortDir == 'asc'}"></ion-icon>
+                            <ion-icon class="icon is-small" name="caret-up-outline"
+                                      th:unless="${sortDir == 'asc'}"></ion-icon>
                         </span>
-
+                    
                     </a>
-               </th>
+                </th>
                 <th>
-                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productName&sortDir='+${reverseSortDir}}">
-                         Product Name
-                         <span class="">
-                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
-                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                    <a class="has-text-info"
+                       th:href="@{'/retail/page/'+${currentPage} + '?sortField=productName&sortDir='+${reverseSortDir}}">
+                        Product Name
+                        <span class="">
+                            <ion-icon class=" icon is-small" name="caret-down-outline"
+                                      th:if="${sortDir == 'asc'}"></ion-icon>
+                            <ion-icon class="icon is-small" name="caret-up-outline"
+                                      th:unless="${sortDir == 'asc'}"></ion-icon>
                         </span>
                     </a>
-
-               </th>
-               <th>
-                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productUnit&sortDir='+${reverseSortDir}}">
-                         Product Unit
-                          <span class="">
-                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
-                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
-                        </span>
-                    </a>
-
-               </th>
+                
+                </th>
                 <th>
-                    <a  class="has-text-info" th:href="@{'/retail/page/'+${currentPage} + '?sortField=productPrice&sortDir='+${reverseSortDir}}">
+                    <a class="has-text-info"
+                       th:href="@{'/retail/page/'+${currentPage} + '?sortField=productUnit&sortDir='+${reverseSortDir}}">
+                        Product Unit
+                        <span class="">
+                            <ion-icon class=" icon is-small" name="caret-down-outline"
+                                      th:if="${sortDir == 'asc'}"></ion-icon>
+                            <ion-icon class="icon is-small" name="caret-up-outline"
+                                      th:unless="${sortDir == 'asc'}"></ion-icon>
+                        </span>
+                    </a>
+                
+                </th>
+                <th>
+                    <a class="has-text-info"
+                       th:href="@{'/retail/page/'+${currentPage} + '?sortField=productPrice&sortDir='+${reverseSortDir}}">
                         Product Price (<span>&#8373;</span>)
-                          <span class="">
-                            <ion-icon class=" icon is-small" th:if="${sortDir == 'asc'}" name="caret-down-outline"></ion-icon>
-                            <ion-icon  class="icon is-small" th:unless="${sortDir == 'asc'}" name="caret-up-outline"></ion-icon>
+                        <span class="">
+                            <ion-icon class=" icon is-small" name="caret-down-outline"
+                                      th:if="${sortDir == 'asc'}"></ion-icon>
+                            <ion-icon class="icon is-small" name="caret-up-outline"
+                                      th:unless="${sortDir == 'asc'}"></ion-icon>
                         </span>
                     </a>
-
-               </th>
-
+                
+                </th>
+                
                 <th class="has-text-centered">Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="product : ${productEntityList}">
-                <td  class="is-uppercase" th:text="${product.productCode }"> </td>
-                <td class="is-capitalized" th:text="${product.productName }"> </td>
-                <td th:text="${product.productUnit }"> </td>
-                <td th:text="${product.productPrice }"> </td>
+                <td class="is-uppercase" th:text="${product.productCode }"></td>
+                <td class="is-capitalized" th:text="${product.productName }"></td>
+                <td th:text="${product.productUnit }"></td>
+                <td th:text="${product.productPrice }"></td>
                 <th class="has-text-centered">
                     <a class="button is-info is-light" th:href="@{/retail/edit/{id}(id=${product.id})}">Edit</a>
                     <a class="button is-danger is-light" th:href="@{/retail/{id}(id=${product.id})}">Delete</a>
                 </th>
             </tr>
             </tbody>
-
+        
         </table>
-
+    
     </div>
-
-
-     <div class="has-text-grey-light">Total Rows : [[${totalItems}]]</div>
+    
+    
+    <div class="has-text-grey-light">Total Rows : [[${totalItems}]]</div>
     <br>
-    <nav  class="pagination" role="navigation" aria-label="pagination">
-
+    <nav aria-label="pagination" class="pagination" role="navigation">
+        
         <br>
-        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${currentPage + 1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" class="pagination-previous">Next page</a>
-        <span th:unless="${currentPage <totalPages}" class=" pagination-next is-disabled">Next Page</span>
-        <a th:if="${currentPage<totalPages}" th:href="@{'/retail/page/'+${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" class="pagination-next">Last page</a>
-        <span th:unless="${currentPage <totalPages}" class="pagination-next is-disabled">Last page</span>
-
-  <ul class="pagination-list">
+        <a class="pagination-previous"
+           th:href="@{'/retail/page/'+${currentPage + 1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
+           th:if="${currentPage<totalPages}">Next page</a>
+        <span class=" pagination-next is-disabled" th:unless="${currentPage <totalPages}">Next Page</span>
+        <a class="pagination-next"
+           th:href="@{'/retail/page/'+${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
+           th:if="${currentPage<totalPages}">Last page</a>
+        <span class="pagination-next is-disabled" th:unless="${currentPage <totalPages}">Last page</span>
+        
+        <ul class="pagination-list">
 
       <span th:each="i: ${#numbers.sequence(1, totalPages)}">
              <li>
-          <a th:if="${currentPage != i}" th:href="@{'/retail/page/'+${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:classappend="${currentPage }? '' : 'is-current' " class="pagination-link"  aria-label="Goto page 1">[[${i}]]</a>
-                         <span th:unless="${currentPage != i}" class=" pagination-link is-disabled">[[${i}]]</span>
+          <a aria-label="Goto page 1"
+             class="pagination-link"
+             th:classappend="${currentPage }? '' : 'is-current' " th:href="@{'/retail/page/'+${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:if="${currentPage != i}">[[${i}]]</a>
+                         <span class=" pagination-link is-disabled" th:unless="${currentPage != i}">[[${i}]]</span>
 
       </li>
       </span>
-
-      <li>
-    </li>
-
-  </ul>
+            
+            <li>
+            </li>
+        
+        </ul>
     </nav>
 </div>
 </body>

@@ -12,14 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
 
 
     @Override
@@ -33,9 +32,9 @@ public class ProductServiceImpl implements ProductService{
 
         ProductEntity productEntity = null;
 
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             productEntity = optional.get();
-        }else {
+        } else {
             throw new RuntimeException("Product not found with id :: " + id);
         }
         return productEntity;
@@ -55,12 +54,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Page<ProductEntity> findPagination(int pageNo, int pageSize, String sortField , String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending()
+    public Page<ProductEntity> findPagination(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
                 : Sort.by(sortField).descending();
 
-        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort );
-        return  this.productRepository.findAll(pageable);
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.productRepository.findAll(pageable);
     }
 
 

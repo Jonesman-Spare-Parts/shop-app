@@ -3,52 +3,61 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <span th:replace="~{fragments/head :: head}"></span>
 <body>
-<div th:if="${param.success}" class="notification has-text-centered	 is-primary is-light">
- <button class="delete"></button>
+<div class="notification has-text-centered	 is-primary is-light" th:if="${param.success}">
+    <button class="delete"></button>
     You've succesfully submited your signup form . The <strong>Adminstrator </strong> will review your
     information and admit you into Jonesuman system
 </div>
-    <div class="hero is-fullheight">
-        <div class="is-flex is-justify-content-center p-4	 ">  <h1 class="title  has-text-weight-bold"> Welcome to <span class="is-primary">  JONESUMAN</span> SHOP</h1></div>
-      <div class="hero-body is-justify-content-center is-align-items-center">
-          <form id="form" action="#" th:action="@{/auth/signup}" method="post" th:object="${users}">
-              <div class="columns is-flex is-flex-direction-column box">
-          <div class="column">
-            <label for="firstName"  >First Name</label>
-            <input th:field="*{firstName}" value required autofocus="autofocus"  th:onkeyup="updateUsernameInput()" id="firstName" class="input " type="text" placeholder="Enter First Name">
-          </div>
-            <div class="column">
-            <label for="lastName">Last Name</label>
-            <input th:field="*{lastName}" value="aaaa" required autofocus="autofocus" id="lastName" class="input " type="text" placeholder="Enter Last Name">
-          </div>
-                  <div class="column">
-            <label  for="userName" >Username (<em>Auto Generated</em>)</label>
-            <input  value=""  disabled id="userName" class="input " type="text" placeholder="Auto Generated Username">
-          </div>
-          <div class="column">
-            <label for="telephone">Telephone</label>
-            <input th:field="*{telephone}" required  autofocus="autofocus" id="telephone" class="input " type="tel" placeholder="Email address">
-          </div>
-                  <div class="column">
-                      <label for="email">Email (<em>Optional</em>)</label>
-            <input th:field="*{email}"  autofocus="autofocus" id="email" class="input " type="text" placeholder="Email address">
-          </div>
-          <div class="column">
-            <label for="password">Password</label>
-            <input th:field="*{password}" required autofocus="autofocus" id="password" class="input " type="password" placeholder="Password">
-            
-          </div>
-          <div class="column">
-            <input th:onclick="updateUsernameInput()" class="button is-primary is-fullwidth" value="Create an account" type="submit"/>
-          </div>
-          <div class="has-text-centered">
-            <p> Already have an account?  <a href="#" th:href="@{/auth/login}" class="has-text-info">Login</a>
-            </p>
-          </div>
-        </div>
-          </form>
-      </div>
+<div class="hero is-fullheight">
+    <div class="is-flex is-justify-content-center p-4	 "><h1 class="title  has-text-weight-bold"> Welcome to <span
+            class="is-primary">  JONESUMAN</span> SHOP</h1></div>
+    <div class="hero-body is-justify-content-center is-align-items-center">
+        <form action="#" id="form" method="post" th:action="@{/auth/signup}" th:object="${users}">
+            <div class="columns is-flex is-flex-direction-column box">
+                <div class="column">
+                    <label for="firstName">First Name</label>
+                    <input autofocus="autofocus" class="input " id="firstName" placeholder="Enter First Name"
+                           required th:field="*{firstName}" th:onkeyup="updateUsernameInput()" type="text"
+                           value>
+                </div>
+                <div class="column">
+                    <label for="lastName">Last Name</label>
+                    <input autofocus="autofocus" class="input " id="lastName" placeholder="Enter Last Name" required
+                           th:field="*{lastName}" type="text" value="aaaa">
+                </div>
+                <div class="column">
+                    <label for="userName">Username (<em>Auto Generated</em>)</label>
+                    <input class="input " disabled id="userName" placeholder="Auto Generated Username" type="text"
+                           value="">
+                </div>
+                <div class="column">
+                    <label for="telephone">Telephone</label>
+                    <input autofocus="autofocus" class="input " id="telephone" placeholder="Email address" required
+                           th:field="*{telephone}" type="tel">
+                </div>
+                <div class="column">
+                    <label for="email">Email (<em>Optional</em>)</label>
+                    <input autofocus="autofocus" class="input " id="email" placeholder="Email address" th:field="*{email}"
+                           type="text">
+                </div>
+                <div class="column">
+                    <label for="password">Password</label>
+                    <input autofocus="autofocus" class="input " id="password" placeholder="Password" required
+                           th:field="*{password}" type="password">
+                
+                </div>
+                <div class="column">
+                    <input class="button is-primary is-fullwidth" th:onclick="updateUsernameInput()"
+                           type="submit" value="Create an account"/>
+                </div>
+                <div class="has-text-centered">
+                    <p> Already have an account? <a class="has-text-info" href="#" th:href="@{/auth/login}">Login</a>
+                    </p>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 <script th:inline="javascript">
     
@@ -58,20 +67,20 @@
     let userName = document.getElementById("userName");
     let firstName = document.getElementById("firstName")
     
-    function updateUsernameInput(){
+    function updateUsernameInput() {
         console.log("keyup", formData.get("userName"))
-        userName.value=firstName.value
-}
+        userName.value = firstName.value
+    }
     
     document.addEventListener('DOMContentLoaded', () => {
-  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-    const $notification = $delete.parentNode;
-
-    $delete.addEventListener('click', () => {
-      $notification.parentNode.removeChild($notification);
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
     });
-  });
-});
 </script>
-  </body>
+</body>
 </html>

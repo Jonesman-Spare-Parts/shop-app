@@ -8,7 +8,6 @@ public interface UserService extends UserDetailsService {
 //    void save(User userRegistrationDto);
 
 
-
     void saveUser(UserEntity userEntity);
 
 

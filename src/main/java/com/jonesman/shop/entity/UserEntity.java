@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,9 +18,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames =  "username") )
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class UserEntity {
-
 
 
     @Id
@@ -44,23 +44,29 @@ public class UserEntity {
     @UpdateTimestamp
     private Date updatedAt;
 
-    @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
-            joinColumns= @JoinColumn(name = "userId", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "rolesId", referencedColumnName = "id")
     )
     private Collection<RoleEntity> role;
+
 
     public <T> UserEntity(String userName, String firstName, String lastName, String email, String telephone, String password, List<T> roleUser) {
 
 
     }
+
+
     @PrePersist
-    private void prePersist(){
-          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-          LocalDateTime now = LocalDateTime.now();
+    private void prePersist() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDateTime now = LocalDateTime.now();
+
         userName = firstName.trim().toLowerCase() + dtf.format(now);
+        password = passwordEncoder.encode(password);
         isApproved = false;
     }
 }

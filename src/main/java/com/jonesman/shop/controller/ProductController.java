@@ -25,64 +25,63 @@ public class ProductController {
 
 
     @GetMapping("/")
-        public String showHomePage(){
-            return "index";
-        }
-       @GetMapping("/retail")
-        public String showRetailPage(Model model){
-            // model.addAttribute("products",productService.getAllProducts());
-             return findPaginated(1,"productCode", "asc", model);
-           // return "retail/index";
-        }
+    public String showHomePage() {
+        return "index";
+    }
 
-
+    @GetMapping("/retail")
+    public String showRetailPage(Model model) {
+        // model.addAttribute("products",productService.getAllProducts());
+        return findPaginated(1, "productCode", "asc", model);
+        // return "retail/index";
+    }
 
 
     @GetMapping("/retail/form")
-        public String showNewProductFormPage(Model model){
-         model.addAttribute("product", new Product());
-         return "retail/form";
-        }
+    public String showNewProductFormPage(Model model) {
+        model.addAttribute("product", new Product());
+        return "retail/form";
+    }
 
-        @PostMapping("/retail/form")
-        public String saveProduct(@ModelAttribute("product") ProductEntity productEntity){
+    @PostMapping("/retail/form")
+    public String saveProduct(@ModelAttribute("product") ProductEntity productEntity) {
         //save product to database
         productService.saveProduct(productEntity);
         return "redirect:/retail";
-        }
+    }
 
-        @GetMapping("/retail/edit/{id}")
-        public String showEditProductFormPage(@PathVariable(value = "id") long id, Model model){
+    @GetMapping("/retail/edit/{id}")
+    public String showEditProductFormPage(@PathVariable(value = "id") long id, Model model) {
 
         //get product from service
-         ProductEntity productEntity = productService.getProductById(id);
+        ProductEntity productEntity = productService.getProductById(id);
 
-         //set product as a model attribute to pre-populate the form
-         model.addAttribute("product", productEntity);
-            return  "retail/form";
-        }
+        //set product as a model attribute to pre-populate the form
+        model.addAttribute("product", productEntity);
+        return "retail/form";
+    }
 
-         @GetMapping("/retail/page/{pageNo}")
-        public String findPaginated(@PathVariable(value = "pageNo") int pageNo ,
-                                    @RequestParam("sortField") String sortField,
-                                    @RequestParam("sortDir") String sortDir,
-                                    Model model){
-            int pageSize = 8;
+    @GetMapping("/retail/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+        int pageSize = 8;
 
-            Page<ProductEntity> page = productService.findPagination(pageNo, pageSize, sortField, sortDir);
-            List<ProductEntity> productEntityList = page.getContent();
+        Page<ProductEntity> page = productService.findPagination(pageNo, pageSize, sortField, sortDir);
+        List<ProductEntity> productEntityList = page.getContent();
 
-            model.addAttribute("currentPage", pageNo);
-            model.addAttribute("totalPages", page.getTotalPages());
-            model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
 
-            model.addAttribute("sortField", sortField);
-            model.addAttribute("sortDir", sortDir);
-            model.addAttribute("reverseSortDir", sortDir.equals("asc")?  "desc" : "asc");
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-            model.addAttribute("productEntityList", productEntityList);
-            return "retail/index";
-        }
+        model.addAttribute("productEntityList", productEntityList);
+        return "retail/index";
+    }
 
 //         @PostMapping("/retail/form")
 //        public String productSubmit(@ModelAttribute Product product , Model model) {
@@ -93,29 +92,27 @@ public class ProductController {
 //
 
 
-
-       @GetMapping("/retail/{id}")
-       public String deleteProduct(@PathVariable(value = "id") long id){
+    @GetMapping("/retail/{id}")
+    public String deleteProduct(@PathVariable(value = "id") long id) {
         this.productService.deleteProductById(id);
 
         return "redirect:/retail";
-       }
-        @GetMapping("/wholesale")
-        public String showWholeSalePage(){
-            return "wholesale/index";
-        }
+    }
 
-        @GetMapping("/auth/login")
-        public String showLoginPage(){
-            return "auth/login";
-        }
+    @GetMapping("/wholesale")
+    public String showWholeSalePage() {
+        return "wholesale/index";
+    }
+
+//        @GetMapping("/auth/login")
+//        public String showLoginPage(){
+//            return "auth/login";
+//        }
 
 //        @GetMapping("/auth/signup")
 //        public String showSignUpPage(){
 //            return "auth/signup";
 //        }
- 
-
 
 
 }

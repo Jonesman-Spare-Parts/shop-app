@@ -3,39 +3,41 @@
 <span th:replace="~{fragments/head :: head}"></span>
 <head>
     <title>Retail Product Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body class="container is-fluid">
 <div class="container is-desktop mt-6">
-     <div class="is-flex is-justify-content-space-between	 ">
-            <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
-    <a class="button is-ghost" th:href="@{/retail}">Products List</a>
+    <div class="is-flex is-justify-content-space-between	 ">
+        <h1 class="title  has-text-weight-bold">Jonesman Product List</h1>
+        <a class="button is-ghost" th:href="@{/retail}">Products List</a>
     </div>
-<form   class="columns is-variable is-multiline is-1-mobile is-0-tablet is-2-desktop " action="#" th:action="@{/retail/form}" th:object="${product}" method="post">
-
-  <div class="column is-half">
-        <label for="productName" class="has-text-weight-bold my-4">Product Name</label>
-    <input type="text" id="productName" th:field="*{productName}" placeholder="Product Name" class="input  ">
-  </div>
-      <div class="column is-half">
-        <label for="productCode" class="has-text-weight-bold my-4">Product Code</label>
-    <input type="text" id="productCode" th:field="*{productCode}" placeholder="Product Code" class="input  ">
-  </div>
-     <div class="column is-half">
-            <label for="productPrice" class="has-text-weight-bold my-4">Product Price ( <span>&#8373;</span>)</label>
-    <input type="number" id="productPrice" th:field="*{productPrice}" placeholder="Product Price" class="input  ">
+    <form action="#" class="columns is-variable is-multiline is-1-mobile is-0-tablet is-2-desktop "
+          method="post" th:action="@{/retail/form}" th:object="${product}">
+        
+        <div class="column is-half">
+            <label class="has-text-weight-bold my-4" for="productName">Product Name</label>
+            <input class="input  " id="productName" placeholder="Product Name" th:field="*{productName}" type="text">
         </div>
-   <div class="column is-half">
-            <label for="productUnit" class="has-text-weight-bold my-4">Product Unit</label>
-
-    <input type="number" id="productUnit" th:field="*{productUnit}" placeholder="Product Unit" class="input  ">
-   </div>
-
-    <div class="column">
-            <input type="submit" value="Save product" class="button is-primary py-2">
-    </div>
-    <input type="hidden" th:field="*{id}"/>
-</form>
+        <div class="column is-half">
+            <label class="has-text-weight-bold my-4" for="productCode">Product Code</label>
+            <input class="input  " id="productCode" placeholder="Product Code" th:field="*{productCode}" type="text">
+        </div>
+        <div class="column is-half">
+            <label class="has-text-weight-bold my-4" for="productPrice">Product Price ( <span>&#8373;</span>)</label>
+            <input class="input  " id="productPrice" placeholder="Product Price" th:field="*{productPrice}"
+                   type="number">
+        </div>
+        <div class="column is-half">
+            <label class="has-text-weight-bold my-4" for="productUnit">Product Unit</label>
+            
+            <input class="input  " id="productUnit" placeholder="Product Unit" th:field="*{productUnit}" type="number">
+        </div>
+        
+        <div class="column">
+            <input class="button is-primary py-2" type="submit" value="Save product">
+        </div>
+        <input th:field="*{id}" type="hidden"/>
+    </form>
 
 </div>
 </body>

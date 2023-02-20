@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auth/signup")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         super();
         this.userService = userService;
     }
 
-//    @ModelAttribute("users")
+    //    @ModelAttribute("users")
 //    public User userRegistrationDto(){
 //        return new User();
 //    }
@@ -29,11 +29,11 @@ public class UserController {
 //    public String showRegistrationForm(){
 //        return "/auth/signup";
 //    }
-     @GetMapping
-        public String showRegistrationForm(Model model){
-         model.addAttribute("users", new User());
-         return "/auth/signup";
-        }
+    @GetMapping
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("users", new User());
+        return "/auth/signup";
+    }
 
 //    @PostMapping
 //    public String registerUserAccount(@ModelAttribute("users") User userRegistrationDto){
@@ -42,11 +42,11 @@ public class UserController {
 //         return  "redirect:/auth/signup?success";
 //    }
 
-     @PostMapping
-        public String saveUser(@ModelAttribute("users") UserEntity userEntity){
+    @PostMapping
+    public String saveUser(@ModelAttribute("users") UserEntity userEntity) {
         //save product to database
         userService.saveUser(userEntity);
         System.out.println("form values " + userEntity + "\n");
-        return  "redirect:/auth/signup?success";
-        }
+        return "redirect:/auth/signup?success";
+    }
 }
