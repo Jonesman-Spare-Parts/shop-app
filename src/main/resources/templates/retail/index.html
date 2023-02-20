@@ -14,6 +14,7 @@
     <div class="table-container">
         <table class="table is-fullwidth is-striped">
             <thead>
+
             <tr>
                 <th>
                     
@@ -71,6 +72,8 @@
                 
                 </th>
                 
+
+ 
                 <th class="has-text-centered">Actions</th>
             </tr>
             </thead>
@@ -80,6 +83,7 @@
                 <td class="is-capitalized" th:text="${product.productName }"></td>
                 <td th:text="${product.productUnit }"></td>
                 <td th:text="${product.productPrice }"></td>
+
                 <th class="has-text-centered">
                     <a class="button is-info is-light" th:href="@{/retail/edit/{id}(id=${product.id})}">Edit</a>
                     <a class="button is-danger is-light" th:href="@{/retail/{id}(id=${product.id})}">Delete</a>

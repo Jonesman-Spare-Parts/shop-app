@@ -3,6 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <span th:replace="~{fragments/head :: head}"></span>
 <body>
+
 <div class="notification has-text-centered	 is-primary is-light" th:if="${param.success}">
     <button class="delete"></button>
     You've succesfully submited your signup form . The <strong>Adminstrator </strong> will review your
@@ -82,5 +83,7 @@
         });
     });
 </script>
+
+
 </body>
 </html>
