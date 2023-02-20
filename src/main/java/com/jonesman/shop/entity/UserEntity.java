@@ -20,6 +20,8 @@ import java.util.List;
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames =  "username") )
 public class UserEntity {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -44,9 +46,9 @@ public class UserEntity {
 
     @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users _roles",
-            joinColumns= @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_sid", referencedColumnName = "id")
+            name = "users_roles",
+            joinColumns= @JoinColumn(name = "userId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "rolesId", referencedColumnName = "id")
     )
     private Collection<RoleEntity> role;
 
