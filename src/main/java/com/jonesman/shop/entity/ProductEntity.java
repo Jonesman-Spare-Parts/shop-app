@@ -2,6 +2,8 @@ package com.jonesman.shop.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -22,10 +24,10 @@ public class ProductEntity {
 
     private int productUnit;
 
-    @CreatedDate
+    @CreationTimestamp
     private Date createdAdded;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     private Date updatedAt;
 
 

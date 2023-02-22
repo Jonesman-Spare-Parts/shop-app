@@ -25,15 +25,9 @@ public class ProductController {
 
 
     @GetMapping("/")
-    public String showHomePage() {
-        return "index";
-    }
-
-    @GetMapping("/retail")
-    public String showRetailPage(Model model) {
-        // model.addAttribute("products",productService.getAllProducts());
+    public String showHomePage(Model model) {
         return findPaginated(1, "productCode", "asc", model);
-        // return "retail/index";
+
     }
 
 
@@ -52,7 +46,6 @@ public class ProductController {
 
     @GetMapping("/retail/edit/{id}")
     public String showEditProductFormPage(@PathVariable(value = "id") long id, Model model) {
-
         //get product from service
         ProductEntity productEntity = productService.getProductById(id);
 
@@ -61,7 +54,7 @@ public class ProductController {
         return "retail/form";
     }
 
-    @GetMapping("/retail/page/{pageNo}")
+    @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
@@ -80,22 +73,13 @@ public class ProductController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("productEntityList", productEntityList);
-        return "retail/index";
+        return "index";
     }
-
-//         @PostMapping("/retail/form")
-//        public String productSubmit(@ModelAttribute Product product , Model model) {
-//            model.addAttribute("product", product);
-//            productService.createProduct(product);
-//            return "redirect:/retail";
-//          }
-//
 
 
     @GetMapping("/retail/{id}")
     public String deleteProduct(@PathVariable(value = "id") long id) {
         this.productService.deleteProductById(id);
-
         return "redirect:/retail";
     }
 
@@ -103,6 +87,38 @@ public class ProductController {
     public String showWholeSalePage() {
         return "wholesale/index";
     }
+
+
+    @GetMapping("/retail")
+    public String showRetailTablePage(Model model) {
+        findPaginated(1, "productCode", "asc", model);
+
+        return "retail/index";
+
+    }
+
+    @GetMapping("/retail/page/{pageNo}")
+    public String findRetailPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                      @RequestParam("sortField") String sortField,
+                                      @RequestParam("sortDir") String sortDir,
+                                      Model model) {
+        int pageSize = 5;
+
+        Page<ProductEntity> page = productService.findPagination(pageNo, pageSize, sortField, sortDir);
+        List<ProductEntity> productEntityList = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("productEntityList", productEntityList);
+        return "retail/index";
+    }
+
 
 //        @GetMapping("/auth/login")
 //        public String showLoginPage(){

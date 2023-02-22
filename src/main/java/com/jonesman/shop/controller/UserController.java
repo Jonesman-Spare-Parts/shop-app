@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping
     public String showRegistrationForm(Model model) {
         model.addAttribute("users", new User());
-        return "/auth/signup";
+        return "auth/register";
     }
 
 //    @PostMapping
