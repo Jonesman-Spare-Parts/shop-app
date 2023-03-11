@@ -3,7 +3,9 @@ package com.jonesman.shop.controller;
 import com.jonesman.shop.entity.ProductEntity;
 import com.jonesman.shop.model.Product;
 import com.jonesman.shop.repository.ProductRepository;
+import com.jonesman.shop.repository.UserRepository;
 import com.jonesman.shop.services.ProductService;
+import com.jonesman.shop.services.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +19,28 @@ public class ProductController {
     private final ProductService productService;
     private final ProductRepository productRepository;
 
+    private final UserRepository userRepository;
+
     public ProductController(ProductService productService,
-                             ProductRepository productRepository) {
+                             ProductRepository productRepository, UserRepository userRepository) {
         this.productService = productService;
         this.productRepository = productRepository;
+        this.userRepository = userRepository;
+
+
     }
 
 
     @GetMapping("/")
     public String showHomePage(Model model) {
+        long itemCount = productRepository.count();
+        long userCount = userRepository.count();
+        Double totalProductPrice = productRepository.getTotalProductPrice();
+
+        model.addAttribute("itemCount", itemCount);
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("totalProductPrice", totalProductPrice);
+
         return findPaginated(1, "productCode", "asc", model);
 
     }
@@ -33,12 +48,26 @@ public class ProductController {
 
     @GetMapping("/retail/form")
     public String showNewProductFormPage(Model model) {
+        long itemCount = productRepository.count();
+        long userCount = userRepository.count();
+        Double totalProductPrice = productRepository.getTotalProductPrice();
+
+        model.addAttribute("itemCount", itemCount);
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("totalProductPrice", totalProductPrice);
         model.addAttribute("product", new Product());
-        return "retail/form";
+        return "retail/product-form";
     }
 
     @PostMapping("/retail/form")
-    public String saveProduct(@ModelAttribute("product") ProductEntity productEntity) {
+    public String saveProduct(@ModelAttribute("product") ProductEntity productEntity, Model model) {
+        long itemCount = productRepository.count();
+        long userCount = userRepository.count();
+        Double totalProductPrice = productRepository.getTotalProductPrice();
+
+        model.addAttribute("itemCount", itemCount);
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("totalProductPrice", totalProductPrice);
         //save product to database
         productService.saveProduct(productEntity);
         return "redirect:/retail";
@@ -51,7 +80,7 @@ public class ProductController {
 
         //set product as a model attribute to pre-populate the form
         model.addAttribute("product", productEntity);
-        return "retail/form";
+        return "retail/product-form";
     }
 
     @GetMapping("/page/{pageNo}")
@@ -91,6 +120,13 @@ public class ProductController {
 
     @GetMapping("/retail")
     public String showRetailTablePage(Model model) {
+        long itemCount = productRepository.count();
+        long userCount = userRepository.count();
+        Double totalProductPrice = productRepository.getTotalProductPrice();
+
+        model.addAttribute("itemCount", itemCount);
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("totalProductPrice", totalProductPrice);
         findPaginated(1, "productCode", "asc", model);
 
         return "retail/index";

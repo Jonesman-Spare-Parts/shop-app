@@ -24,7 +24,7 @@
 <body class="text-blueGray-700 antialiased">
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root">
-    <nav
+   <nav
             class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
     >
         <div
@@ -33,7 +33,8 @@
             <button
                     class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                     type="button"
-                    onclick="toggleNavbar('example-collapse-sidebar')"
+                    onclick="toggleNavbar('example-' +
+                     'collapse-sidebar')"
             >
                 <i class="fas fa-bars"></i>
             </button>
@@ -133,9 +134,9 @@
                         <div class="w-6/12">
                             <a
                                     class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                                    th:href="@{/}"
+                                    href="../../index.html"
                             >
-                                Jonesuman
+                                Notus Tailwind JS
                             </a>
                         </div>
                         <div class="w-6/12 flex justify-end">
@@ -172,7 +173,7 @@
                     <li class="items-center">
                         <a
                                 th:href="@{/}"
-                                class="text-xs uppercase py-3 font-bold block  hover:text-pink-600"
+                                class="text-xs uppercase py-3 font-bold block hover:text-pink-600"
                         >
                             <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
                             Dashboard
@@ -182,7 +183,7 @@
                     <li class="items-center">
                         <a
                                 th:href="@{/auth/settings}"
-                                class="text-xs uppercase py-3 font-bold block text-blueGray-700  hover:text-blueGray-500"
+                                class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
                         >
                             <i class="fas fa-tools mr-2 text-sm text-blueGray-300"></i>
                             Settings
@@ -192,7 +193,7 @@
                     <li class="items-center">
                         <a
                                 th:href="@{/retail}"
-                                class="text-xs uppercase py-3 font-bold block text-pink-500  hover:text-blueGray-500"
+                                class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
                         >
                             <i class="fas fa-table mr-2 text-sm text-blueGray-300"></i>
                             Retail
@@ -251,7 +252,7 @@
                     <li class="items-center">
                         <a
                                 th:href="@{/auth/users}"
-                                class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                class="text-pink-500   hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                         >
                             <i
                                     class="fas fa-users text-blueGray-300 mr-2 text-sm"
@@ -273,8 +274,8 @@
             >
                 <a
                         class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                        href="./index.html"
-                >Retail</a
+                        th:href="@{/}"
+                >Users</a
                 >
             
             </div>
@@ -293,8 +294,8 @@
         <!-- Header -->
         <div class="relative bg-pink-600 md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full">
-                <span th:replace="~{fragments/card-stats :: div}"></span>
-            
+                                <span th:replace="~{fragments/card-stats :: div}"></span>
+                
             </div>
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -309,24 +310,108 @@
                                         class="relative w-full px-4 max-w-full flex-grow flex-1"
                                 >
                                     <h3 class="font-semibold text-lg text-blueGray-700">
-                                        Retail Products
+                                        Shop members
                                     </h3>
                                 </div>
                                 <div
                                         class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
                                 >
-                                    <button
-                                            class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="button"
-                                    >
-                                        <a th:href="@{/retail/form}">Add product</a>
-                                    </button>
+<!--                                    <button-->
+<!--                                            class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"-->
+<!--                                            type="button"-->
+<!--                                    >-->
+<!--                                        <a th:href="@{/retail/form}">Add product</a>-->
+<!--                                    </button>-->
                                 </div>
                             </div>
                         </div>
                         <div class="block w-full overflow-x-auto">
                             <!-- Projects table -->
-                            <span th:replace="~{fragments/product-table :: table}"></span>
+                           <table
+        class="items-center w-full bg-transparent border-collapse"
+>
+    <thead>
+    <tr>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Username
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Name
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Telephone
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Last Update
+        </th>
+        <th
+                                sec:authorize="hasRole('ROLE_ADMIN')"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Actions
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userEntityList}">
+        <th
+                th:text="${user.userName }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+        >
+        
+        </th>
+        <td
+                th:text="${user.firstName + ' ' + user.lastName }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        
+        </td>
+        <td
+                th:text="${user.telephone }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        
+        </td>
+        <td
+                th:text="${user.updatedAt }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+            <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
+            46,53%
+        </td>
+        
+        <td
+                sec:authorize="hasRole('ROLE_ADMIN')"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+            <a
+                    th:href="@{/auth/signup/{id}(id=${user.id})}">
+                <i class="fas fa-pen text-emerald-500 mr-4">
+                </i>
+            </a>
+            
+            <a th:href="@{/auth/users/delete/{id}(id=${user.id})}">
+                <i class="fas fa-trash text-red-500 mr-4">
+                </i>
+            </a>
+            <a  th:href="@{/auth/users/{id}(id=${user.id})}">
+                <i th:classappend="${!user.isApproved} ? 'text-red-500' : 'text-green-500'" class="fas fa-check  mr-4">
+                </i>
+            </a>
+          
+        
+        </td>
+    </tr>
+    </tbody>
+</table>
                         </div>
                     </div>
                 </div>
@@ -335,105 +420,105 @@
                             class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-pink-900 text-white"
                     >
                     
-                    </div>
                 </div>
-                <!--            <footer class="block py-4">-->
-                <!--                <div class="container mx-auto px-4">-->
-                <!--                    <hr class="mb-4 border-b-1 border-blueGray-200"/>-->
-                <!--                    <div-->
-                <!--                            class="flex flex-wrap items-center md:justify-between justify-center"-->
-                <!--                    >-->
-                <!--                        <div class="w-full md:w-4/12 px-4">-->
-                <!--                            <div-->
-                <!--                                    class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left"-->
-                <!--                            >-->
-                <!--                                Copyright © <span id="get-current-year"></span>-->
-                <!--                                <a-->
-                <!--                                        href="https://www.creative-tim.com?ref=njs-settings"-->
-                <!--                                        class="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"-->
-                <!--                                >-->
-                <!--                                    Creative Tim-->
-                <!--                                </a>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="w-full md:w-8/12 px-4">-->
-                <!--                            <ul-->
-                <!--                                    class="flex flex-wrap list-none md:justify-end justify-center"-->
-                <!--                            >-->
-                <!--                                <li>-->
-                <!--                                    <a-->
-                <!--                                            href="https://www.creative-tim.com?ref=njs-settings"-->
-                <!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
-                <!--                                    >-->
-                <!--                                        Creative Tim-->
-                <!--                                    </a>-->
-                <!--                                </li>-->
-                <!--                                <li>-->
-                <!--                                    <a-->
-                <!--                                            href="https://www.creative-tim.com/presentation?ref=njs-settings"-->
-                <!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
-                <!--                                    >-->
-                <!--                                        About Us-->
-                <!--                                    </a>-->
-                <!--                                </li>-->
-                <!--                                <li>-->
-                <!--                                    <a-->
-                <!--                                            href="http://blog.creative-tim.com?ref=njs-settings"-->
-                <!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
-                <!--                                    >-->
-                <!--                                        Blog-->
-                <!--                                    </a>-->
-                <!--                                </li>-->
-                <!--                                <li>-->
-                <!--                                    <a-->
-                <!--                                            href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-settings"-->
-                <!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
-                <!--                                    >-->
-                <!--                                        MIT License-->
-                <!--                                    </a>-->
-                <!--                                </li>-->
-                <!--                            </ul>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--            </footer>-->
             </div>
+<!--            <footer class="block py-4">-->
+<!--                <div class="container mx-auto px-4">-->
+<!--                    <hr class="mb-4 border-b-1 border-blueGray-200"/>-->
+<!--                    <div-->
+<!--                            class="flex flex-wrap items-center md:justify-between justify-center"-->
+<!--                    >-->
+<!--                        <div class="w-full md:w-4/12 px-4">-->
+<!--                            <div-->
+<!--                                    class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left"-->
+<!--                            >-->
+<!--                                Copyright © <span id="get-current-year"></span>-->
+<!--                                <a-->
+<!--                                        href="https://www.creative-tim.com?ref=njs-settings"-->
+<!--                                        class="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"-->
+<!--                                >-->
+<!--                                    Creative Tim-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="w-full md:w-8/12 px-4">-->
+<!--                            <ul-->
+<!--                                    class="flex flex-wrap list-none md:justify-end justify-center"-->
+<!--                            >-->
+<!--                                <li>-->
+<!--                                    <a-->
+<!--                                            href="https://www.creative-tim.com?ref=njs-settings"-->
+<!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
+<!--                                    >-->
+<!--                                        Creative Tim-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a-->
+<!--                                            href="https://www.creative-tim.com/presentation?ref=njs-settings"-->
+<!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
+<!--                                    >-->
+<!--                                        About Us-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a-->
+<!--                                            href="http://blog.creative-tim.com?ref=njs-settings"-->
+<!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
+<!--                                    >-->
+<!--                                        Blog-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a-->
+<!--                                            href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-settings"-->
+<!--                                            class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"-->
+<!--                                    >-->
+<!--                                        MIT License-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </footer>-->
         </div>
     </div>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script type="text/javascript">
-        /* Make dynamic date appear */
-        (function () {
-            if (document.getElementById("get-current-year")) {
-                document.getElementById("get-current-year").innerHTML =
-                        new Date().getFullYear();
-            }
-        })();
-        
-        /* Sidebar - Side navigation menu on mobile/responsive mode */
-        function toggleNavbar(collapseID) {
-            document.getElementById(collapseID).classList.toggle("hidden");
-            document.getElementById(collapseID).classList.toggle("bg-white");
-            document.getElementById(collapseID).classList.toggle("m-2");
-            document.getElementById(collapseID).classList.toggle("py-3");
-            document.getElementById(collapseID).classList.toggle("px-6");
-        }
-        
-        /* Function for dropdowns */
-        function openDropdown(event, dropdownID) {
-            let element = event.target;
-            while (element.nodeName !== "A") {
-                element = element.parentNode;
-            }
-            Popper.createPopper(element, document.getElementById(dropdownID), {
-                placement: "bottom-start"
-            });
-            document.getElementById(dropdownID).classList.toggle("hidden");
-            document.getElementById(dropdownID).classList.toggle("block");
-        }
-    </script>
 </div>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    /* Make dynamic date appear */
+    (function () {
+        if (document.getElementById("get-current-year")) {
+            document.getElementById("get-current-year").innerHTML =
+                    new Date().getFullYear();
+        }
+    })();
+    
+    /* Sidebar - Side navigation menu on mobile/responsive mode */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("bg-white");
+        document.getElementById(collapseID).classList.toggle("m-2");
+        document.getElementById(collapseID).classList.toggle("py-3");
+        document.getElementById(collapseID).classList.toggle("px-6");
+    }
+    
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+            element = element.parentNode;
+        }
+        Popper.createPopper(element, document.getElementById(dropdownID), {
+            placement: "bottom-start"
+        });
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+    }
+</script>
+
 </body>
 </html>
