@@ -1,10 +1,14 @@
 package com.jonesman.shop.entity;
 
+import com.jonesman.shop.repository.DailyTotalRepository;
 import jakarta.persistence.*;
-import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,16 +21,10 @@ public class ProductEntity {
     private long id;
     private String productCode;
     private String productName;
-
-    private float productPrice;
-
+    private double productPrice;
     private int productUnit;
-
-    @CreatedDate
+    @CreationTimestamp
     private Date createdAdded;
-
-    @LastModifiedDate
-    private Date updatedAt;
 
 
 }

@@ -1,0 +1,79 @@
+<table
+        class="items-center w-full bg-transparent border-collapse"
+>
+    <thead>
+    <tr>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Code
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            NAME
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Unit
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Price
+        </th>
+        <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+            Actions
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${productEntityList}">
+        <th
+                th:text="${product.productCode }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+        >
+        
+        </th>
+        <td
+                th:text="${product.productName }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        
+        </td>
+        <td
+                th:text="${product.productUnit }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        
+        </td>
+        <td
+                th:text="${product.productPrice }"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+            <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
+            46,53%
+        </td>
+        
+        <td
+                
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+            <a
+                    th:href="@{/retail/edit/{id}(id=${product.id})}">
+                <i class="fas fa-pen text-emerald-500 mr-4">
+                </i>
+            </a>
+            
+            <a th:href="@{/retail/{id}(id=${product.id})}">
+                <i class="fas fa-trash text-red-500 mr-4">
+                </i>
+            </a>
+        
+        </td>
+    </tr>
+    </tbody>
+</table>
